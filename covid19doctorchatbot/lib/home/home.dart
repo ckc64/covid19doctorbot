@@ -97,11 +97,21 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+                 Container(
+               
+                width: MediaQuery.of(context).size.width,
+                child:Text("COVID-19 Cases : ",
+                style: TextStyle(
+                  fontFamily: 'Montserrat-Bold',
+                  fontSize: 20
+                ),
+                )
+              ),
               Container(
                  padding: EdgeInsets.only(bottom:15),
                 width: MediaQuery.of(context).size.width,
-                child:Text("COVID-19 Cases : \nPhilippines, as of "
-                  + DateFormat.yMMMMd("en_US").add_jm().format(new DateTime.now().toLocal()) +"(PST)",
+                child:Text("Philippines, as of "
+                  + DateFormat.yMMMMd("en_US").add_jm().format(new DateTime.now().toLocal()),
                 style: TextStyle(
                   fontFamily: 'Montserrat-Regular'
                 ),
