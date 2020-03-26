@@ -184,14 +184,22 @@ class _HomePageState extends State<HomePage> {
                  child: Text("worldmeters.info",style: TextStyle(fontWeight: FontWeight.bold),),
                ),
                Container(
-                 child: Text("https://www.worldometers.info/coronavirus/country/philippines/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),),
+                 child: InkWell(
+                    onTap: (){
+                     launch('https://www.worldometers.info/coronavirus/country/philippines/');
+                   },
+                   child: Text("https://www.worldometers.info/coronavirus/country/philippines/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),)),
                ),
                   SizedBox(height: 10),
                 Container(
                  child: Text("ncovtracker.doh.gov.ph",style: TextStyle(fontWeight: FontWeight.bold),),
                ),
                Container(
-                 child: Text("https://ncovtracker.doh.gov.ph/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),),
+                 child: InkWell(
+                    onTap: (){
+                     launch('https://ncovtracker.doh.gov.ph/');
+                   },
+                   child: Text("https://ncovtracker.doh.gov.ph/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),)),
                )
           
             ],
