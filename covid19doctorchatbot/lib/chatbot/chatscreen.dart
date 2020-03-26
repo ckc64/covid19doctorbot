@@ -2,6 +2,7 @@ import 'package:covid19doctorchatbot/chatbot/chadata.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -36,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
           actions: <Widget>[
             IconButton(
               onPressed: ()=>print(messages),
-              icon: Icon(Icons.ac_unit),
+              icon: Icon(Icons.account_box),
             )
           ],
         ),
@@ -103,7 +104,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           
                               if(userFirstQuestions.contains(messageController.text)){
                                 messages.add("bot:"+botFirstAnswer[chatIndex]);
-                                 print(userFirstQuestions.contains(messageController.text));
+                                 
                                
                               }    else if(messageController.text.toLowerCase().contains("hello") || messageController.text.toLowerCase().contains("hi")){
                                 messages.add("bot:Hi, I am your bot doctor for COVID-19");

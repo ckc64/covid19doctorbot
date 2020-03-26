@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:covid19doctorchatbot/chatbot/chatscreen.dart';
+import 'package:covid19doctorchatbot/faq/faq.dart';
 import 'package:flutter/material.dart';
 import 'package:html/dom.dart' as prefix0;
 import 'package:http/http.dart' as http;
 import 'package:html/parser.dart' show parse;
 import 'dart:convert';
 import 'package:intl/intl.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -29,7 +32,6 @@ class _HomePageState extends State<HomePage> {
    
    for( var link in links ){
     
-      print(link.text.trim());
       setState(() {
           counterCases.add(link.text.trim());
       });
@@ -44,9 +46,6 @@ class _HomePageState extends State<HomePage> {
   
 
   }
-
-
-//https://www.doh.gov.ph/2019-nCov
  
   @override
   void initState() {
@@ -80,7 +79,7 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: IconButton(
                 splashColor: Colors.green[600],
-              onPressed: ()=>print("HELP"),
+              onPressed: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>FAQ())),
               icon: Icon(Icons.help_outline),
               iconSize: 30,
               color: Colors.white,
@@ -94,9 +93,10 @@ class _HomePageState extends State<HomePage> {
           child:Padding(
             padding: const EdgeInsets.all(20),
             child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+      
                  Container(
                
                 width: MediaQuery.of(context).size.width,
@@ -117,6 +117,28 @@ class _HomePageState extends State<HomePage> {
                 ),
                 )
               ),
+                 Container(
+               
+                width: MediaQuery.of(context).size.width,
+                child:Text("COVID-19 PH Hotline : ",
+                style: TextStyle(
+                  fontFamily: 'Montserrat-Bold',
+                  fontSize: 20
+                ),
+                )
+              ),
+                Container(
+               
+                width: MediaQuery.of(context).size.width,
+                child:Text("1555 (PLDT, Smart, Sun, and TnT)\n(02)  894-26843 (894-COVID)",
+                style: TextStyle(
+                  fontFamily: 'Montserrat-Regular',
+                 
+                ),
+                )
+              ),
+
+              SizedBox(height: 10),
               dataContainer(
                 txtTitle: "CONFIRMED CASES",
                 txtNumberOfCases: caseCount,
@@ -138,7 +160,39 @@ class _HomePageState extends State<HomePage> {
                 icon: Icon(Icons.airline_seat_individual_suite,size: 70,color:Colors.red),
                 colors: Colors.red
               ),
-              
+               SizedBox(height: 15),
+               Container(
+                 child: Text("Sources :",style: TextStyle(fontWeight: FontWeight.bold),),
+               ),
+               SizedBox(height: 15),
+                Container(
+                 child: Text("World Health Organization Website",style: TextStyle(fontWeight: FontWeight.bold),),
+               ),
+                Container(
+                  
+                 child: InkWell(
+                   onTap: (){
+                     launch('https://www.who.int/emergencies/diseases/novel-coronavirus-2019');
+                   },
+                   child: Text("https://www.who.int/emergencies/diseases/novel-coronavirus-2019",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),),
+                 )
+                 
+                 
+               ),
+               SizedBox(height: 10),
+                Container(
+                 child: Text("worldmeters.info",style: TextStyle(fontWeight: FontWeight.bold),),
+               ),
+               Container(
+                 child: Text("https://www.worldometers.info/coronavirus/country/philippines/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),),
+               ),
+                  SizedBox(height: 10),
+                Container(
+                 child: Text("ncovtracker.doh.gov.ph",style: TextStyle(fontWeight: FontWeight.bold),),
+               ),
+               Container(
+                 child: Text("https://ncovtracker.doh.gov.ph/",style: TextStyle(decoration: TextDecoration.underline,color:Colors.blue,fontWeight: FontWeight.bold),),
+               )
           
             ],
         ),
@@ -146,6 +200,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+
 
 Widget dataContainer({String txtTitle,Icon icon,String txtNumberOfCases,Color colors}){
 
